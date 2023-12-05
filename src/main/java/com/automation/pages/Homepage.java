@@ -42,6 +42,7 @@ public class Homepage extends PageBase{
         this.closePopUpBtn.click();
     }
     public void clickSearchBtn(){
+        waitForElement(searchInputTxt, 3);
         searchInputTxt.click();
     }
     public void searchItem(String query){

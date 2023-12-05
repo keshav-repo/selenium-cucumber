@@ -63,7 +63,7 @@ public abstract class PageBase {
     }
 
     public void waitForElement(WebElement element, int timeOutInSeconds) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
         wait.ignoring(NoSuchElementException.class);
         wait.ignoring(ElementNotInteractableException.class);
         wait.ignoring(StaleElementReferenceException.class);

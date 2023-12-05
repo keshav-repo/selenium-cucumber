@@ -1,5 +1,7 @@
 Feature: Search feature of the web page
 
+#  @firefox    @chrome
+  @firefox
   Scenario: Search based on laptops
     Given I am at the home page
     When I click on the "Laptops" search filter

@@ -31,7 +31,6 @@ public class SearchStepDef {
     @Then("I should be at the {string} search page with {string} items")
     public void i_should_be_at_the_search_page_with(String query, String searchItemCount) {
         homepage.searchItem(query);
-
         int expectedItemCount = Integer.parseInt(searchItemCount);
         int actualItemCount =  homepage.itemCount();
         log.info("actualItemCount is "+actualItemCount);
