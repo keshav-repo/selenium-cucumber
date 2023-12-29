@@ -8,6 +8,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
@@ -63,12 +64,23 @@ public abstract class PageBase {
     }
 
     public void waitForElement(WebElement element, int timeOutInSeconds) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
-        wait.ignoring(NoSuchElementException.class);
-        wait.ignoring(ElementNotInteractableException.class);
-        wait.ignoring(StaleElementReferenceException.class);
-        wait.pollingEvery(Duration.ofMillis(250));
-        wait.until(elementLocated(element));
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
+//        wait.ignoring(NoSuchElementException.class);
+//        wait.ignoring(ElementNotInteractableException.class);
+//        wait.ignoring(StaleElementReferenceException.class);
+//        wait.pollingEvery(Duration.ofMillis(250));
+//        log.info("waiting for the element");
+//        wait.until(elementLocated(element));
+
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(timeOutInSeconds));
+        wait.until(
+                ExpectedConditions.elementToBeClickable(element)
+        );
+    }
+
+    public void implicitWait(){
+        log.info("inplicit wait of 2 seconds");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
 
     private Function<WebDriver, Boolean> elementLocated(final WebElement element) {

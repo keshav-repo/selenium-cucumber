@@ -20,7 +20,11 @@ public class SearchStepDef {
     @Given("I am at the home page")
     public void i_am_at_the_home_page() throws Exception{
         homepage.navigate();
-        homepage.closePopup();
+        try{
+            homepage.closePopup();
+        }catch (Exception e) {
+            log.warn("pop up not coming or not closing");
+        }
     }
 
     @When("I click on the {string} search filter")

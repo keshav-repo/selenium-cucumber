@@ -10,7 +10,9 @@ public class FirefoxBrowser {
     public static WebDriver getDriver() {
         try{
             System.setProperty("webdriver.gecko.driver","src/main/resources/driver/geckodriver");
-            return new FirefoxDriver();
+            FirefoxDriver driver =  new FirefoxDriver();
+            driver.manage().window().maximize();
+            return driver;
         }catch (Exception e){
             log.error("error initiating firefox browser");
             throw new RuntimeException(e);
