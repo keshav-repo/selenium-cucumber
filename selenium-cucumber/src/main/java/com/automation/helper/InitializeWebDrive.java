@@ -11,6 +11,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.Objects;
+
 import static com.automation.configuration.browser.BrowserType.Chrome;
 import static com.automation.configuration.browser.BrowserType.Firefox;
 
@@ -19,6 +21,8 @@ public class InitializeWebDrive {
 
     public void setUpDriver(BrowserType browserType) {
         log.info("browser type {}", browserType);
+        if(!Objects.isNull(DriverUtility.driver))
+            return;
         switch (browserType) {
             case Chrome:
                 DriverUtility.driver = ChromeBrowser.getChromeDriver();
@@ -57,6 +61,12 @@ public class InitializeWebDrive {
     public void tearDownDriver() throws Exception {
         try {
             if (DriverUtility.driver != null) {
+                // giving some sleep before shutting the browser
+                try{
+                    Thread.sleep(3000);
+                }catch (Exception e){
+
+                }
                 DriverUtility.driver.quit();
             }
         } catch (Exception e) {
