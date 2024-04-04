@@ -1,6 +1,7 @@
-package com.automation.pages;
+package com.automation.pages.myntra;
 
 import com.automation.common.DriverUtility;
+import com.automation.pages.PageBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Keys;
@@ -9,7 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class MyntraHome extends PageBase{
+
+public  class MyntraHome extends PageBase {
     private WebDriver driver;
     private Logger log = LogManager.getLogger(MyntraHome.class);
 

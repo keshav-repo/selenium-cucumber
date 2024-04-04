@@ -33,6 +33,7 @@ public class InitializeWebDrive {
             default:
                 DriverUtility.driver = ChromeBrowser.getChromeDriver();
         }
+        DriverUtility.driver.manage().window().maximize();
     }
 
     @Before(order=1, value = "@chrome")
@@ -67,7 +68,7 @@ public class InitializeWebDrive {
                 }catch (Exception e){
 
                 }
-                DriverUtility.driver.quit();
+              //  DriverUtility.driver.quit();
             }
         } catch (Exception e) {
             log.error("error tear down browser");
