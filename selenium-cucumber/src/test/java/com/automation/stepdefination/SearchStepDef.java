@@ -1,7 +1,7 @@
 package com.automation.stepdefination;
 
 import com.automation.common.DriverUtility;
-import com.automation.pages.Homepage;
+import com.automation.pages.flipkart.Homepage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

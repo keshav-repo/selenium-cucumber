@@ -12,8 +12,9 @@ public class ChromeBrowser {
 
 	public static WebDriver getChromeDriver() {
 		try {
+			String path = "src/main/resources/driver/chrome-mac-arm64/TestChrome.app/Contents/MacOS/testChrome";
 			ChromeOptions co = new ChromeOptions();
-			co.setBinary("src/main/resources/driver/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing");
+			co.setBinary(path);
 			return new ChromeDriver(co);
 		}catch (Exception e){
 			log.error("error initiating chrome browser");

@@ -1,6 +1,7 @@
-package com.automation.pages;
+package com.automation.pages.flipkart;
 
 import com.automation.common.DriverUtility;
+import com.automation.pages.PageBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Keys;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import java.util.List;
 
-public class Homepage extends PageBase{
+public class Homepage extends PageBase {
     private WebDriver driver;
     private static Logger log = LogManager.getLogger(Homepage.class);
 
@@ -42,7 +43,7 @@ public class Homepage extends PageBase{
         this.closePopUpBtn.click();
     }
     public void clickSearchBtn(){
-        waitForElement(searchInputTxt, 3);
+        waitForElement(searchInputTxt, 1);
         searchInputTxt.click();
     }
     public void searchItem(String query){
