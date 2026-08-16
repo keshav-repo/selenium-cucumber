@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven'
+        jdk 'JDK-11'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master', 
+                    url: 'https://github.com/keshav-repo/selenium-cucumber.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                dir('selenium-cucumber') {
+                    sh 'mvn clean install -DskipTests'
+                }
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                dir('selenium-cucumber') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
+        stage('Publish Report') {
+            steps {
+                // Example for TestNG / Cucumber reports
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'selenium-cucumber/target/cucumber-reports',
+                    reportFiles: 'index.html',
+                    reportName: 'Cucumber Report'
+                ])
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: '**/screenshots/**, **/target/**/*.html', allowEmptyArchive: true
+        }
+        failure {
+            echo 'Tests failed. Please check the reports.'
+        }
+        success {
+            echo 'All tests passed successfully!'
+        }
+    }
+}
+
