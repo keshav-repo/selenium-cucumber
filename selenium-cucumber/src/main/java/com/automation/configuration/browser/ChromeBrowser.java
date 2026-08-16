@@ -28,13 +28,18 @@ public class ChromeBrowser {
             }
 
             if (remoteUrl != null && !remoteUrl.isEmpty()) {
-                log.info("Using remote WebDriver at {}", remoteUrl);
-                return new RemoteWebDriver(new URL(remoteUrl), co);
-            } else {
-                // Use WebDriverManager to download correct chromedriver for the environment
-                WebDriverManager.chromedriver().setup();
-                return new ChromeDriver(co);
+                log.info("Attempting to use remote WebDriver at {}", remoteUrl);
+                try {
+                    return new RemoteWebDriver(new URL(remoteUrl), co);
+                } catch (Exception e) {
+                    log.error("Failed to create remote WebDriver at {}. Falling back to local ChromeDriver. Error: {}", remoteUrl, e.getMessage());
+                    // fall through to local driver
+                }
             }
+
+            // Use WebDriverManager to download correct chromedriver for the environment
+            WebDriverManager.chromedriver().setup();
+            return new ChromeDriver(co);
         } catch (Exception e) {
             log.error("error initiating chrome browser", e);
             throw new RuntimeException(e);
