@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', 
+                git branch: 'jenkins',
                     url: 'https://github.com/keshav-repo/selenium-cucumber.git'
             }
         }
