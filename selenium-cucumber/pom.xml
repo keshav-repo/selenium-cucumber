@@ -73,6 +73,13 @@
             <artifactId>log4j-api</artifactId>
             <version>2.22.0</version>
         </dependency>
+
+        <!-- WebDriverManager for managing driver binaries in CI -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.4.0</version>
+        </dependency>
     </dependencies>
 
     <build>

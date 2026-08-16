@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        HEADLESS = 'true'
+    }
+
     tools {
         maven 'Maven'
     }
